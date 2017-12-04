@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenCV.NET"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Closing="Window_Closing">
     <Grid>
-        <Image Name="OutImg"></Image>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button Name="MakePhoto" Click="MakePhoto_Click" Grid.Column="1" Grid.Row="0">Make photo</Button>
+        <Image Name="OutImg" Grid.Column="1" Grid.Row="1"></Image>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBox Name="ScaleW" Width="40" Text="0" TextAlignment="Center" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
+            <Label Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">X</Label>
+            <TextBox Name="ScaleH" Width="40" Text="0" TextAlignment="Center" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged_1" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
+        </StackPanel>
+        <ListBox Name="EyesList" Grid.Column="0" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" SelectionChanged="EyesList_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Stretch">
+                            <Image Width="80" Height="80" Source="{Binding Path=Prev}" HorizontalAlignment="Center"></Image>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
